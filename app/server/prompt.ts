@@ -1,21 +1,34 @@
-import { DEFAULT_MODULE, MODULES, STUDENT_PROFILE } from "./config.ts";
+import { APP_SETTINGS, DEFAULT_MODULE, MODULES, STUDENT_PROFILE } from "./config.ts";
 
 /* The tutor's system prompt. It is in German on purpose: the learner studies in German.
    Personal details (what and where the learner studies) come from config/student.md. */
 
 const LANG: Record<string, string> = {
   de: "Antworte auf **Deutsch** (einfaches, klares Deutsch – kurze Sätze, keine unnötigen Fremdwörter).",
-  en: "Answer in **English** (simple, clear English). Always add the German technical term in brackets the first time it appears, e.g. „bearing force (Lagerkraft)“ – the exams are in German.",
-  ar: "أجب **بالعربية** (لغة بسيطة وواضحة، ويمكن استخدام العامية المصرية الخفيفة). اكتب المصطلح الألماني بين قوسين عند أول ظهور له، مثل: „قوة الارتكاز (Lagerkraft)“ – لأن الامتحانات بالألمانية. المعادلات تبقى بالرموز اللاتينية.",
+  en: "Answer in **English** (simple, clear English).",
+  ar: "أجب **بالعربية** (لغة بسيطة وواضحة، ويمكن استخدام العامية المصرية الخفيفة). المعادلات تبقى بالرموز اللاتينية.",
+};
+
+/** Optional: add technical terms in another language in brackets (e.g. when the exams are in German). */
+const termRule = (lang: string) => {
+  const t = APP_SETTINGS.termLanguage;
+  if (!t || (lang === "de" && /^deutsch|german$/i.test(t))) return "";
+  return lang === "ar"
+    ? `
+اكتب المصطلح الفني بال${t === "Deutsch" ? "ألمانية" : t} بين قوسين عند أول ظهور له، لأن الامتحانات بهذه اللغة.`
+    : `
+Add the ${t === "Deutsch" ? "German" : t} technical term in brackets the first time it appears, e.g. "bearing force (Lagerkraft)", because the exams are in that language.`;
 };
 
 export function systemPrompt(o: { lang: string; module: string; profile: string[]; library: string; name: string }) {
   const who = o.name.trim() || "die Person, die du betreust";
   const mod = MODULES.find((m) => m.id === o.module);
-  return `Du bist „Study Buddy“, ein persönlicher Tutor. ${o.name.trim() ? `Die Person, die du betreust, heißt **${o.name.trim()}** (den Namen nur im Chat verwenden, nie in Videos). ${o.name.trim()}` : "Die Person, die du betreust,"} ${STUDENT_PROFILE} Normale KI-Erklärungen waren oft zu schwer oder zu sprunghaft – deine Aufgabe: Es soll WIRKLICH verstanden werden. Sprich mit „du“ an.
+  return `Du bist „Study Buddy“, ein persönlicher Tutor. ${o.name.trim() ? `Die Person, die du betreust, heißt **${o.name.trim()}** (den Namen nur im Chat verwenden, nie in Videos).` : ""}
+Über die Person: ${STUDENT_PROFILE}
+Normale KI-Erklärungen waren oft zu schwer oder zu sprunghaft – deine Aufgabe: Es soll WIRKLICH verstanden werden. Sprich mit „du“ an.
 
 ## Sprache
-${LANG[o.lang] ?? LANG.de}
+${LANG[o.lang] ?? LANG.de}${termRule(o.lang)}
 
 ## Module
 ${MODULES.filter((m) => m.id !== DEFAULT_MODULE).map((m) => `- ${m.id}: ${m.name}`).join("\n")}

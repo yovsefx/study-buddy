@@ -18,7 +18,7 @@ export const MODEL = process.env.STUDY_MODEL || "claude-opus-5-5";
 
 export type Module = { id: string; name: string; icon: string; color: string; semester: number; handbook: string };
 
-/** modules.json and student.md (each falls back to its *.example file). */
+/** app.json, modules.json and student.md (each falls back to its *.example file). */
 const CONFIG_DIR = path.resolve(process.env.CONFIG_DIR || path.join(APP_DIR, "config"));
 
 /** Read config/<name>, falling back to config/<example> so a fresh clone runs with sample data. */
@@ -33,6 +33,11 @@ if (!MODULES.some((m) => m.id === "allgemein")) {
   MODULES.push({ id: "allgemein", name: "Allgemein", icon: "messages-square", color: "#64748b", semester: 0, handbook: "" });
 }
 export const DEFAULT_MODULE = "allgemein";
+
+/** App defaults: the starting UI/answer language ("de" | "en" | "ar"), and optionally the language in which
+    technical terms are added in brackets (useful when the exams are in another language than the answers). */
+export const APP_SETTINGS: { lang: "de" | "en" | "ar"; termLanguage: string | null } = { lang: "en", termLanguage: null, ...JSON.parse(readConfig("app.json", "app.example.json")) };
+export const DEFAULT_LANG = APP_SETTINGS.lang;
 
 /** A few sentences about the learner (what and where they study); inserted into the tutor prompt. */
 export const STUDENT_PROFILE = readConfig("student.md", "student.example.md").trim();

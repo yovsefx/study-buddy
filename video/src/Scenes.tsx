@@ -146,7 +146,7 @@ export const DiagramScene: React.FC<P & { appear: Record<string, number>; dur: R
 };
 
 /** Running notes on the right: persist across scenes and collect the task and intermediate results. */
-export const Notes: React.FC<{ th: Theme; t: number; notes: { at: number; label?: string; tex?: string; text?: string }[]; visibleFrom: number }> = ({ th, t, notes, visibleFrom }) => {
+export const Notes: React.FC<{ th: Theme; t: number; notes: { at: number; label?: string; tex?: string; text?: string }[]; visibleFrom: number; title?: string }> = ({ th, t, notes, visibleFrom, title = "Merkzettel" }) => {
   const o = ease(t, visibleFrom - 0.3, 0.6);
   if (o <= 0) return null;
   const shown = notes.filter((n) => t >= n.at - 0.1);
@@ -157,7 +157,7 @@ export const Notes: React.FC<{ th: Theme; t: number; notes: { at: number; label?
       borderRadius: 22, padding: "18px 22px", display: "flex", flexDirection: "column", gap: 10,
       boxShadow: th.name === "tafel" ? "0 6px 20px rgba(15,23,42,0.07)" : "none", overflow: "hidden",
     }}>
-      <div style={{ fontFamily: th.body, fontWeight: 800, fontSize: 30, color: th.amber }}>📌 Merkzettel</div>
+      <div style={{ fontFamily: th.body, fontWeight: 800, fontSize: 30, color: th.amber }}>📌 {title}</div>
       {shown.map((n, i) => {
         const a = ease(t, n.at - 0.1, 0.5);
         const fresh = t - n.at < 2.5;

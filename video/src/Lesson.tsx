@@ -41,9 +41,9 @@ const SceneView: React.FC<{ L: Lesson; i: number; starts: number[]; th: Theme; a
   );
 };
 
-const NotesLayer: React.FC<{ th: Theme; notes: { at: number }[]; visibleFrom: number }> = ({ th, notes, visibleFrom }) => {
+const NotesLayer: React.FC<{ th: Theme; notes: { at: number }[]; visibleFrom: number; title: string }> = ({ th, notes, visibleFrom, title }) => {
   const frame = useCurrentFrame();
-  return <Notes th={th} t={frame / FPS} notes={notes} visibleFrom={visibleFrom} />;
+  return <Notes th={th} t={frame / FPS} notes={notes} visibleFrom={visibleFrom} title={title} />;
 };
 
 const Progress: React.FC<{ th: Theme; total: number }> = ({ th, total }) => {
@@ -81,7 +81,7 @@ export const LessonVideo: React.FC<{ lesson: Lesson }> = ({ lesson: L }) => {
         </Sequence>
       ))}
       <div style={{ position: "absolute", top: 40, right: 60, fontFamily: th.body, fontSize: 24, fontWeight: 700, color: th.muted, opacity: 0.8 }}>{L.module}</div>
-      <NotesLayer th={th} notes={notes} visibleFrom={visibleFrom} />
+      <NotesLayer th={th} notes={notes} visibleFrom={visibleFrom} title={L.lang === "en" ? "Notes" : "Merkzettel"} />
       <Progress th={th} total={total} />
     </AbsoluteFill>
   );

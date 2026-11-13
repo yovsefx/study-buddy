@@ -7,7 +7,7 @@ import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { db, getSetting, now, setSetting, uid, UPLOAD_DIR } from "./db.ts";
-import { APP_DIR, BASE_PATH, DEFAULT_MODULE, MODULES, PYTHON, isModule } from "./config.ts";
+import { APP_DIR, BASE_PATH, DEFAULT_LANG, DEFAULT_MODULE, MODULES, PYTHON, isModule } from "./config.ts";
 import { addDocument, deleteDoc, getDoc, importLibraryFolder, listDocs } from "./library.ts";
 import { getVideo, listVideos, resumeQueue } from "./video.ts";
 import { runTurn, type Attachment, type TurnEvent } from "./agent.ts";
@@ -90,12 +90,12 @@ api.use((req, res, next) => {
 });
 
 // ---------- Settings, modules, learner memory ----------
-api.get("/me", (_req, res) => res.json({ ok: true, lang: getSetting("lang", "de"), name: getSetting("name", "") }));
+api.get("/me", (_req, res) => res.json({ ok: true, lang: getSetting("lang", DEFAULT_LANG), name: getSetting("name", "") }));
 api.put("/settings", (req, res) => {
   const lang = String(req.body?.lang ?? "");
   if (["de", "en", "ar"].includes(lang)) setSetting("lang", lang);
   if (typeof req.body?.name === "string") setSetting("name", req.body.name.replace(/[\r\n]/g, " ").trim().slice(0, 40));
-  res.json({ lang: getSetting("lang", "de"), name: getSetting("name", "") });
+  res.json({ lang: getSetting("lang", DEFAULT_LANG), name: getSetting("name", "") });
 });
 api.get("/modules", (_req, res) => {
   const counts = db.prepare("SELECT module, COUNT(*) AS n FROM documents GROUP BY module").all() as { module: string; n: number }[];

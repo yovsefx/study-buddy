@@ -39,7 +39,7 @@ const T = {
     askSimpler: "Please explain that again more simply and slowly, with even smaller steps.",
     askDeeper: "Please explain that in more depth: more background on why it works, and a second example.",
     askVideo: "Please make a video of your last explanation.",
-    merkzettel: "Notes (Merkzettel)", videoQueued: "Video queued …", videoTts: "Conrad is recording the voice …", videoRendering: "Rendering video …",
+    merkzettel: "Notes", videoQueued: "Video queued …", videoTts: "Conrad is recording the voice …", videoRendering: "Rendering video …",
     videoError: "Video failed", download: "Download", minutes: "min",
     deleteChat: "Delete chat", confirmDelete: "Really delete?", rename: "Rename",
     libTitle: "Library", libSub: "Your books, lecture notes and old exams. The tutor searches here first.", upload: "Upload PDFs",

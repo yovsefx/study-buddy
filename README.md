@@ -5,6 +5,8 @@ You ask a question (or send a photo of an exercise or a PDF), and Study Buddy an
 course material, step by step, with formulas, graphs and sketches. On request, it turns the explanation
 into a narrated explainer video.
 
+**UI in English, German and Arabic.** The tutor answers in the language you pick. A fresh clone starts in English.
+
 <p>
   <img src="docs/screenshots/chat-light.png" alt="Chat with the tutor: step-by-step solution, running notes and a function graph" width="100%">
 </p>
@@ -39,6 +41,7 @@ into a narrated explainer video.
   - Works on iPad and Android; designed for tablet and phone first.
   - Light and dark mode.
   - The service worker caches only the app shell, never API responses.
+- **Three languages.** The UI comes in English, German and Arabic (with right-to-left layout), and the tutor answers in the selected language. Optionally, technical terms can be added in brackets in a second language, for example when the exams are in German.
 - **Password login** with a signed HttpOnly cookie and rate limiting: 5 failed attempts per IP per 15 minutes, 30 in total.
 
 ## Architecture
@@ -74,10 +77,10 @@ app/
   server/      Node server: API, auth, Claude agent and tools, library, video queue
   web/         React UI (Vite), service worker, manifest
   scripts/     extract_pdf.py (PyMuPDF)
-  config/      modules.example.json, student.example.md (copy and edit)
+  config/      app.example.json, modules.example.json, student.example.md (copy and edit)
 video/
   src/         Remotion composition: scenes, graphs, sketches, captions
-  lessons/     demo lessons (substitution, statics, tangent)
+  lessons/     demo lessons: tangent-en (English) and three German ones
   scripts/     tts.py (edge-tts), demo.mjs
 library/       drop your own PDFs here, one folder per module id
 docs/          screenshots
@@ -107,7 +110,7 @@ npm start                       # serves on http://127.0.0.1:3000 (PORT in .env)
 # Video renderer (only needed for explainer videos)
 cd ../video
 npm install
-npm run demo -- lessons/tangente.json   # optional: voice and render a demo to video/out/
+npm run demo -- lessons/tangent-en.json   # optional: voice and render a demo to video/out/
 ```
 
 ### Configuration
@@ -117,13 +120,14 @@ npm run demo -- lessons/tangente.json   # optional: voice and render a demo to v
   - `STUDY_PASSWORD`: the login password. Use a long random one.
   - `STUDY_SECRET`: the key for signing the login cookie.
   - `PORT`, plus the optional `STUDY_MODEL`, `BASE_PATH`, `DATA_DIR`, `CONFIG_DIR`, `LIBRARY_DIR` and `PYTHON`.
+- **`app/config/app.json`**: the starting language (`"lang": "en" | "de" | "ar"`) and `termLanguage` (for example `"Deutsch"` to add German technical terms in brackets, or `null`). Copy `app.example.json`. You can switch the language later in Settings.
 - **`app/config/modules.json`**: your subjects. Copy `modules.example.json`.
   - Each module has an `id`, a `name`, an `icon` (a [Lucide](https://lucide.dev/icons) name such as `sigma`), a `color` and optional `handbook` text (the course description the tutor can look up).
   - Keep the `allgemein` (general) module.
 - **`app/config/student.md`**: one or two sentences about the learner, for example what and where they study, and their first language. Copy `student.example.md`.
 - **Your PDFs:** put them in `library/<module-id>/`. They are imported on start, or you can upload them in the app.
 
-Without your own `modules.json` and `student.md`, the app runs with the example files.
+Without your own config files, the app runs with the example files, in English.
 
 ### Running it for real
 
@@ -136,7 +140,9 @@ Install the app from the browser: Safari → Share → Add to Home Screen, or Ch
 
 - **Claude is the only model provider.** The agent loop, tools and file reading rely on the Claude Agent SDK.
 - **One user at a time.** There is a single password and no accounts. Everyone who logs in sees the same chats and library.
-- **Mostly German.** The tutor rules, the prompts and the video narration are in German, and the UI defaults to German. English and Arabic UI translations exist, and answers can be in any of the three languages.
+- **Some parts are German-only.**
+  - **The tutor's rules and system prompt** are written in German. The answers still come in the language you pick, because the prompt tells the tutor which language to use.
+  - **App-generated videos** are narrated by a German voice (edge-tts "Conrad"), and their on-screen labels are German. The video engine itself supports any edge-tts voice and English labels: the `tangent-en` demo uses both.
 - **edge-tts** uses an unofficial Microsoft endpoint. It is free and sounds good, but it can change or stop working without notice.
 - **Text-only search.** Scanned PDFs (pages without a text layer) are not full-text searchable. The tutor can still open those pages as images.
 - **Your content leaves the machine.** Questions, attachments and the library pages the tutor reads are sent to the Claude API.
@@ -147,7 +153,7 @@ Pull requests and forks for non-commercial use are welcome. Good next steps:
 
 - **Multi-user accounts:** per-user chats, libraries and memory, instead of one shared password.
 - **Other model providers:** an adapter around the tool layer, for OpenAI-compatible APIs or local models.
-- **An English UI and tutor rules** as a first-class option, not a translation.
+- **English tutor rules and narration:** an English version of the tutor rules, and videos narrated in the UI language (the voice and the labels are already per-lesson settings in the video engine).
 - **Other subjects and universities:** a setup wizard for modules and course descriptions.
 - **Docker:** one image with Node, Python, ffmpeg and Chrome for the renderer.
 - **Tests and CI:** unit tests for the lesson validator and the search, Playwright smoke tests, GitHub Actions.

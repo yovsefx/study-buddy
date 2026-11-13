@@ -1,31 +1,31 @@
 [
  {
-  "id": "analysis",
-  "name": "Analysis (Beispiel)",
+  "id": "calculus",
+  "name": "Calculus (example)",
   "icon": "sigma",
   "color": "#2563eb",
   "semester": 1,
-  "handbook": "Beispielmodul Analysis\nLehrinhalte: Folgen und Reihen, Grenzwerte, Differential- und Integralrechnung einer Variablen.\nLernziele: Die Studierenden können Ableitungen und Integrale sicher berechnen und das passende Verfahren auswählen.\nPrüfung: Klausur, 90 Minuten."
+  "handbook": "Example module: Calculus\nContents: sequences and series, limits, differential and integral calculus in one variable.\nLearning goals: students compute derivatives and integrals reliably and choose the right method.\nExam: written exam, 90 minutes."
  },
  {
-  "id": "mechanik",
-  "name": "Mechanik (Beispiel)",
+  "id": "mechanics",
+  "name": "Mechanics (example)",
   "icon": "scale",
   "color": "#dc2626",
   "semester": 1,
-  "handbook": "Beispielmodul Mechanik\nLehrinhalte: Kräfte und Momente, Gleichgewicht, Lagerreaktionen, Schwerpunkt.\nLernziele: Die Studierenden können ebene Systeme freischneiden und Lagerkräfte berechnen.\nPrüfung: Klausur, 90 Minuten."
+  "handbook": "Example module: Engineering mechanics\nContents: forces and moments, equilibrium, support reactions, centre of mass.\nLearning goals: students draw free-body diagrams and compute support reactions of planar systems.\nExam: written exam, 90 minutes."
  },
  {
-  "id": "chemie",
-  "name": "Chemie (Beispiel)",
+  "id": "chemistry",
+  "name": "Chemistry (example)",
   "icon": "flask-conical",
   "color": "#059669",
   "semester": 1,
-  "handbook": "Beispielmodul Chemie\nLehrinhalte: Atombau, Periodensystem, chemische Bindung, Stöchiometrie, Säuren und Basen.\nPrüfung: Klausur, 60 Minuten."
+  "handbook": "Example module: General chemistry\nContents: atomic structure, periodic table, chemical bonding, stoichiometry, acids and bases.\nExam: written exam, 60 minutes."
  },
  {
   "id": "allgemein",
-  "name": "Allgemein",
+  "name": "General",
   "icon": "messages-square",
   "color": "#64748b",
   "semester": 0,

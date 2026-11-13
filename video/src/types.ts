@@ -11,6 +11,8 @@ export type Scene = {
 };
 export type Lesson = {
   id: string; title: string; module: string; style: "tafel" | "modern"; voice: string; rate?: string;
+  /** UI labels inside the video ("de" default, "en"). The narration language follows the text and the voice. */
+  lang?: "de" | "en";
   beam?: { l: number; a: number; F: number }; scenes: Scene[];
 };
 

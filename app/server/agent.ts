@@ -3,7 +3,7 @@ import path from "node:path";
 import { query, tool, createSdkMcpServer, type SDKUserMessage, type HookCallback } from "@anthropic-ai/claude-agent-sdk";
 import { z } from "zod";
 import { db, getSetting, now } from "./db.ts";
-import { DATA_DIR, MODEL, MODULES, moduleIds, moduleName } from "./config.ts";
+import { DATA_DIR, DEFAULT_LANG, MODEL, MODULES, moduleIds, moduleName } from "./config.ts";
 import { addDocument, getDoc, listDocs, pageText, search } from "./library.ts";
 import { checkLesson, createVideo, lessonSchema } from "./video.ts";
 import { systemPrompt } from "./prompt.ts";
@@ -101,7 +101,7 @@ const IMAGE_MIME = ["image/jpeg", "image/png", "image/gif", "image/webp"];
 /** One chat turn: send the message to Claude, stream the answer to the client, persist everything. */
 export async function runTurn(chatId: string, text: string, attachments: Attachment[], emit: (e: TurnEvent) => void) {
   const chat = db.prepare("SELECT * FROM chats WHERE id = ?").get(chatId) as any;
-  const lang = getSetting("lang", "de");
+  const lang = getSetting("lang", DEFAULT_LANG);
   const name = getSetting("name", "");
   const profile = (db.prepare("SELECT note FROM profile ORDER BY id").all() as { note: string }[]).map((r) => r.note);
   const docs = listDocs();

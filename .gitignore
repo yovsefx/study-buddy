@@ -7,6 +7,7 @@ __pycache__/
 # Secrets and local configuration (copy the *.example files)
 .env
 app/.env
+app/config/app.json
 app/config/modules.json
 app/config/student.md
 
