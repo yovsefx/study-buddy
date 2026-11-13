@@ -1,0 +1,326 @@
+{
+  "id": "lagerreaktionen",
+  "title": "Lagerreaktionen am Balken",
+  "module": "Technische Mechanik · Statik",
+  "style": "modern",
+  "voice": "de-DE-ConradNeural",
+  "rate": "-5%",
+  "beam": {
+    "l": 4,
+    "a": 1,
+    "F": 6
+  },
+  "scenes": [
+    {
+      "type": "title",
+      "heading": "Lagerreaktionen am Balken",
+      "sub": "Technische Mechanik · Statik",
+      "parts": [
+        {
+          "say": "Hallo! Heute berechnen wir die Lagerkräfte an einem Balken. Wir gehen ganz langsam vor, und ich erkläre dir bei jedem Schritt, warum wir ihn machen."
+        }
+      ]
+    },
+    {
+      "type": "diagram",
+      "heading": "Die Aufgabe",
+      "parts": [
+        {
+          "show": [
+            "beam",
+            "supports"
+          ],
+          "text": "Ein Balken, 4 m lang, liegt auf zwei Lagern: A und B.",
+          "say": "Hier siehst du einen Balken. Er ist vier Meter lang und liegt auf zwei Lagern, links A und rechts B."
+        },
+        {
+          "show": [
+            "F",
+            "dims"
+          ],
+          "tex": "F = 6\\,\\text{kN}\\ \\text{ bei }\\ a = 1\\,\\text{m}",
+          "why": "kN = Kilonewton (1 kN = 1000 N)",
+          "say": "Einen Meter von A entfernt drückt eine Kraft F von sechs Kilonewton nach unten.",
+          "note": {
+            "label": "Gegeben",
+            "tex": "F = 6\\,\\text{kN},\\ a = 1\\,\\text{m},\\ l = 4\\,\\text{m}"
+          }
+        },
+        {
+          "text": "Frage: Mit welcher Kraft drücken A und B von unten dagegen?",
+          "why": "Der Balken bleibt liegen – also müssen die Lager gegenhalten.",
+          "say": "Die Frage ist: Mit welcher Kraft drücken die Lager A und B von unten gegen den Balken? Denn der Balken bleibt ja liegen, er fällt nicht runter."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "basics",
+      "heading": "📚 Grundlage 1: Gleichgewicht",
+      "parts": [
+        {
+          "label": "Nichts bewegt sich",
+          "text": "Alle Kräfte heben sich gegenseitig auf → „Gleichgewicht“.",
+          "say": "Grundlage eins. Der Balken bewegt sich nicht. Das heißt: Alle Kräfte heben sich gegenseitig auf. Man sagt, er ist im Gleichgewicht."
+        },
+        {
+          "label": "Kräfte",
+          "tex": "\\sum F_x = 0 \\qquad \\sum F_y = 0",
+          "why": "Σ heißt „Summe“: alle Kräfte zur Seite = 0, alle Kräfte hoch/runter = 0",
+          "say": "Das Zeichen Sigma heißt Summe. Alle Kräfte zur Seite, also in x-Richtung, ergeben zusammen null. Und alle Kräfte nach oben und unten, also in y-Richtung, ergeben auch null."
+        },
+        {
+          "label": "Momente",
+          "tex": "\\sum M = 0",
+          "why": "Der Balken dreht sich auch nicht. Was ein Moment ist: gleich!",
+          "say": "Und der Balken dreht sich auch nicht. Deshalb ist auch die Summe aller Momente null. Was ein Moment ist, schauen wir uns jetzt an.",
+          "note": {
+            "label": "Gleichgewicht",
+            "tex": "\\sum F_x=0,\\ \\sum F_y=0,\\ \\sum M=0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "basics",
+      "heading": "📚 Grundlage 2: Das Moment",
+      "parts": [
+        {
+          "label": "Schraubenschlüssel",
+          "text": "Je länger der Griff, desto leichter dreht sich die Schraube.",
+          "why": "Die Drehwirkung hängt von Kraft UND Abstand ab.",
+          "say": "Grundlage zwei: das Moment. Denk an einen Schraubenschlüssel. Je länger der Griff, desto leichter dreht sich die Schraube. Die Drehwirkung hängt also von der Kraft und vom Abstand ab."
+        },
+        {
+          "label": "Formel",
+          "tex": "M = F \\cdot \\text{Hebelarm}",
+          "why": "Hebelarm = Abstand zwischen Kraft und Drehpunkt",
+          "say": "Die Formel: Moment gleich Kraft mal Hebelarm. Der Hebelarm ist der Abstand zwischen der Kraft und dem Drehpunkt."
+        },
+        {
+          "label": "Wichtig!",
+          "text": "Kraft genau im Drehpunkt → Hebelarm 0 → Moment 0",
+          "say": "Ganz wichtig für später: Greift eine Kraft genau im Drehpunkt an, ist der Hebelarm null. Dann ist auch ihr Moment null. Sie kann nichts drehen."
+        },
+        {
+          "label": "Vorzeichen",
+          "text": "↺ gegen den Uhrzeigersinn = plus   ·   ↻ im Uhrzeigersinn = minus",
+          "say": "Und wir legen eine Richtung fest: Dreht eine Kraft gegen den Uhrzeigersinn, ist das Moment positiv. Dreht sie im Uhrzeigersinn, ist es negativ.",
+          "note": {
+            "label": "Moment",
+            "tex": "M = F\\cdot\\text{Hebelarm}\\qquad \\circlearrowleft\\,= +"
+          }
+        }
+      ]
+    },
+    {
+      "type": "diagram",
+      "heading": "Schritt 1: Freischneiden",
+      "parts": [
+        {
+          "tex": "\\text{Festlager A} \\;\\to\\; A_x,\\ A_y",
+          "why": "fest verankert: drückt nach oben UND zur Seite",
+          "say": "Schritt eins. Zuerst überlegen wir, was die Lager können. Das Festlager A ist fest verankert. Es kann nach oben und zur Seite drücken. Also hat es zwei Kräfte: A x und A Ypsilon."
+        },
+        {
+          "tex": "\\text{Loslager B} \\;\\to\\; B",
+          "why": "steht auf Rollen: kann nur nach oben drücken",
+          "say": "Das Loslager B steht auf Rollen. Zur Seite würde es einfach wegrollen. Es kann also nur nach oben drücken. Das ist eine Kraft: B."
+        },
+        {
+          "show": [
+            "fkb"
+          ],
+          "text": "Freischneiden: Lager weg – Kräfte einzeichnen",
+          "why": "Wie groß die Kräfte sind, wissen wir noch nicht.",
+          "say": "Jetzt schneiden wir frei. Das heißt: Wir nehmen die Lager in Gedanken weg und zeichnen stattdessen ihre Kräfte ein. A x, A Ypsilon und B. Wie groß sie sind, wissen wir noch nicht."
+        },
+        {
+          "text": "3 Unbekannte – und 3 Gleichungen ✓",
+          "why": "Kräfte in x, Kräfte in y, Momente",
+          "say": "Wir haben also drei Unbekannte. Und wir haben genau drei Gleichungen: Kräfte in x, Kräfte in y und Momente. Das reicht genau!",
+          "note": {
+            "label": "Unbekannt",
+            "tex": "A_x,\\ A_y,\\ B"
+          }
+        }
+      ]
+    },
+    {
+      "type": "diagram",
+      "heading": "Schritt 2: Momente um A",
+      "parts": [
+        {
+          "show": [
+            "moment"
+          ],
+          "text": "💡 Drehpunkt = A",
+          "why": "Ax und Ay greifen in A an → Hebelarm 0 → fallen weg! Nur B bleibt unbekannt.",
+          "say": "Schritt zwei: Für die Momente brauchen wir einen Drehpunkt. Wir wählen A. Warum? A x und A Ypsilon greifen genau in A an. Ihr Hebelarm ist null. Also fallen sie aus der Rechnung raus, und es bleibt nur noch eine Unbekannte: B."
+        },
+        {
+          "show": [
+            "leverF"
+          ],
+          "tex": "M_F = -\\,6 \\cdot 1",
+          "why": "F drückt runter, 1 m von A → dreht ↻ → minus",
+          "say": "Jetzt die Kraft F. Sie drückt nach unten, einen Meter von A entfernt. Das würde den Balken im Uhrzeigersinn drehen. Also minus. Ihr Moment ist minus sechs mal eins."
+        },
+        {
+          "show": [
+            "leverB"
+          ],
+          "tex": "M_B = +\\,B \\cdot 4",
+          "why": "B drückt hoch, 4 m von A → dreht ↺ → plus",
+          "say": "Und die Kraft B. Sie drückt nach oben, vier Meter von A entfernt. Das dreht gegen den Uhrzeigersinn. Also plus. Ihr Moment ist B mal vier."
+        },
+        {
+          "tex": "\\sum M_A = 0:\\;\\; B\\cdot 4 - 6\\cdot 1 = 0",
+          "why": "Alle Momente zusammen = 0",
+          "say": "Alle Momente zusammen müssen null ergeben. Also: B mal vier minus sechs mal eins gleich null."
+        }
+      ]
+    },
+    {
+      "type": "diagram",
+      "heading": "Schritt 2: Nach B auflösen",
+      "parts": [
+        {
+          "tex": "B\\cdot 4 - 6 = 0",
+          "why": "6 · 1 = 6",
+          "say": "Jetzt lösen wir nach B auf. Sechs mal eins ist sechs. Also: B mal vier minus sechs gleich null."
+        },
+        {
+          "tex": "B\\cdot 4 = 6",
+          "why": "auf beiden Seiten + 6",
+          "say": "Wir rechnen auf beiden Seiten plus sechs. Dann steht da: B mal vier gleich sechs."
+        },
+        {
+          "tex": "B = \\frac{6}{4}",
+          "why": "beide Seiten ÷ 4",
+          "say": "Jetzt teilen wir beide Seiten durch vier. B gleich sechs Viertel."
+        },
+        {
+          "show": [
+            "valB"
+          ],
+          "tex": "\\boxed{B = 1{,}5\\,\\text{kN}}",
+          "why": "6 ÷ 4 = 1,5",
+          "say": "Sechs geteilt durch vier ist eins Komma fünf. Also ist B gleich eins Komma fünf Kilonewton. Das tragen wir ins Bild ein.",
+          "note": {
+            "label": "Ergebnis ✓",
+            "tex": "B = 1{,}5\\,\\text{kN}"
+          }
+        }
+      ]
+    },
+    {
+      "type": "diagram",
+      "heading": "Schritt 3: Kräfte nach oben und unten",
+      "parts": [
+        {
+          "tex": "\\uparrow\\ A_y,\\ B \\qquad \\downarrow\\ F",
+          "why": "nach oben drücken Ay und B, nach unten drückt F",
+          "say": "Schritt drei: Jetzt schauen wir uns die Kräfte nach oben und unten an. Nach oben drücken A Ypsilon und B. Nach unten drückt F."
+        },
+        {
+          "tex": "\\sum F_y = 0:\\;\\; A_y + B - F = 0",
+          "why": "nach oben = plus, nach unten = minus",
+          "say": "Nach oben zählen wir plus, nach unten minus. Also: A Ypsilon plus B minus F gleich null."
+        },
+        {
+          "tex": "A_y + 1{,}5 - 6 = 0",
+          "why": "einsetzen, was wir kennen: B = 1,5 und F = 6",
+          "say": "Jetzt setzen wir ein, was wir schon kennen: B ist eins Komma fünf, F ist sechs."
+        },
+        {
+          "show": [
+            "valA"
+          ],
+          "tex": "A_y = 6 - 1{,}5 = \\boxed{4{,}5\\,\\text{kN}}",
+          "why": "die Zahlen auf die andere Seite bringen",
+          "say": "Wir bringen die Zahlen auf die andere Seite: A Ypsilon gleich sechs minus eins Komma fünf. Das sind vier Komma fünf Kilonewton.",
+          "note": {
+            "label": "Ergebnis ✓",
+            "tex": "A_y = 4{,}5\\,\\text{kN}"
+          }
+        }
+      ]
+    },
+    {
+      "type": "diagram",
+      "heading": "Schritt 4: Kräfte zur Seite",
+      "parts": [
+        {
+          "show": [
+            "valAx"
+          ],
+          "tex": "\\sum F_x = 0:\\;\\; \\boxed{A_x = 0}",
+          "why": "Keine Kraft zieht nach links oder rechts → A muss zur Seite nicht gegenhalten.",
+          "say": "Schritt vier: die Kräfte zur Seite. Es gibt keine Kraft, die nach links oder rechts zieht. Also muss das Lager zur Seite auch nicht gegenhalten. A x ist null.",
+          "note": {
+            "label": "Ergebnis ✓",
+            "tex": "A_x = 0"
+          }
+        },
+        {
+          "text": "Fertig! Alle 3 Lagerkräfte sind bekannt ✓",
+          "say": "Fertig! Wir kennen jetzt alle drei Lagerkräfte."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "tricks",
+      "heading": "💡 Tricks zum Überprüfen",
+      "parts": [
+        {
+          "label": "Gefühl-Check",
+          "text": "F sitzt näher an A → A muss mehr tragen: 4,5 kN > 1,5 kN ✓",
+          "say": "Trick eins, der Gefühl-Check. Die Kraft sitzt viel näher an A als an B. Also muss A auch mehr tragen. Und tatsächlich: Vier Komma fünf ist mehr als eins Komma fünf."
+        },
+        {
+          "label": "Summen-Check",
+          "tex": "A_y + B = 4{,}5 + 1{,}5 = 6 = F \\;\\checkmark",
+          "why": "Hoch muss genauso viel drücken wie runter.",
+          "say": "Trick zwei, der Summen-Check. Beide Lager zusammen müssen genau F tragen. Vier Komma fünf plus eins Komma fünf ist sechs. Passt!"
+        },
+        {
+          "label": "Schnellformel",
+          "tex": "B = F\\cdot\\frac{a}{l} = 6\\cdot\\frac{1}{4} = 1{,}5 \\;\\checkmark",
+          "why": "gilt nur bei einer einzelnen Kraft",
+          "say": "Trick drei: Bei nur einer Kraft gibt es eine Schnellformel. B ist F mal a durch l. Sechs mal ein Viertel ist eins Komma fünf. Gleiches Ergebnis!"
+        },
+        {
+          "label": "⚠️ Klausurfehler",
+          "text": "Vorzeichen vertauscht → Drehrichtung immer am Anfang festlegen!",
+          "say": "Und der häufigste Fehler in der Klausur: falsche Vorzeichen bei den Momenten. Leg die Drehrichtung deshalb immer am Anfang fest."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "summary",
+      "heading": "Zusammenfassung: Das Rezept",
+      "parts": [
+        {
+          "text": "① Freischneiden: Lager weg, Kräfte einzeichnen",
+          "say": "Hier ist das Rezept. Erstens: freischneiden."
+        },
+        {
+          "text": "② Momente um das Festlager → B",
+          "say": "Zweitens: Momente um das Festlager. So fallen zwei Unbekannte weg, und wir bekommen B."
+        },
+        {
+          "text": "③ Kräfte in y → Ay   ④ Kräfte in x → Ax",
+          "say": "Drittens und viertens: die Kräftesummen in y und in x."
+        },
+        {
+          "text": "⑤ Checken: Gefühl, Summe, Schnellformel",
+          "say": "Und fünftens: das Ergebnis checken. Viel Erfolg in Technischer Mechanik!"
+        }
+      ]
+    }
+  ]
+}

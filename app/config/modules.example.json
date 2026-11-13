@@ -1,0 +1,34 @@
+[
+ {
+  "id": "analysis",
+  "name": "Analysis (Beispiel)",
+  "icon": "sigma",
+  "color": "#2563eb",
+  "semester": 1,
+  "handbook": "Beispielmodul Analysis\nLehrinhalte: Folgen und Reihen, Grenzwerte, Differential- und Integralrechnung einer Variablen.\nLernziele: Die Studierenden können Ableitungen und Integrale sicher berechnen und das passende Verfahren auswählen.\nPrüfung: Klausur, 90 Minuten."
+ },
+ {
+  "id": "mechanik",
+  "name": "Mechanik (Beispiel)",
+  "icon": "scale",
+  "color": "#dc2626",
+  "semester": 1,
+  "handbook": "Beispielmodul Mechanik\nLehrinhalte: Kräfte und Momente, Gleichgewicht, Lagerreaktionen, Schwerpunkt.\nLernziele: Die Studierenden können ebene Systeme freischneiden und Lagerkräfte berechnen.\nPrüfung: Klausur, 90 Minuten."
+ },
+ {
+  "id": "chemie",
+  "name": "Chemie (Beispiel)",
+  "icon": "flask-conical",
+  "color": "#059669",
+  "semester": 1,
+  "handbook": "Beispielmodul Chemie\nLehrinhalte: Atombau, Periodensystem, chemische Bindung, Stöchiometrie, Säuren und Basen.\nPrüfung: Klausur, 60 Minuten."
+ },
+ {
+  "id": "allgemein",
+  "name": "Allgemein",
+  "icon": "messages-square",
+  "color": "#64748b",
+  "semester": 0,
+  "handbook": ""
+ }
+]

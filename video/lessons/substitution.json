@@ -1,0 +1,125 @@
+{
+  "id": "substitution",
+  "title": "Integration durch Substitution",
+  "module": "Mathematik · Integralrechnung",
+  "style": "tafel",
+  "voice": "de-DE-ConradNeural",
+  "rate": "-5%",
+  "scenes": [
+    {
+      "type": "title",
+      "heading": "Integration durch Substitution",
+      "sub": "Mathematik · Integralrechnung",
+      "parts": [
+        { "say": "Hallo! Heute lernen wir die Substitution. Keine Sorge: Wir gehen ganz langsam vor, Schritt für Schritt. Und bei jedem Schritt erkläre ich dir, warum wir das machen." }
+      ]
+    },
+    {
+      "type": "formula",
+      "heading": "Die Aufgabe",
+      "tex": "\\int 2x\\cdot\\cos(x^2)\\,dx",
+      "parts": [
+        { "say": "Das ist unsere Aufgabe: das Integral von zwei x mal Kosinus von x Quadrat, d x.", "note": { "label": "Aufgabe", "tex": "\\int 2x\\cos(x^2)\\,dx" } },
+        { "text": "Problem: Es wird multipliziert – und im Kosinus steht nicht x, sondern x².", "say": "Das Problem: Hier wird multipliziert, und im Kosinus steht nicht einfach x, sondern x Quadrat. Dafür gibt es keine einfache Regel zum direkten Integrieren." },
+        { "text": "Plan: erst 2 Grundlagen wiederholen – dann wird es leicht.", "say": "Deshalb wiederholen wir zuerst zwei Grundlagen. Danach ist die Aufgabe ganz leicht." }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "basics",
+      "heading": "📚 Grundlage 1: Integrieren = Ableiten rückwärts",
+      "parts": [
+        { "label": "Was heißt integrieren?", "text": "Wir suchen eine Funktion, deren Ableitung genau die Funktion im Integral ist.", "say": "Was heißt eigentlich integrieren? Wir suchen eine Funktion, deren Ableitung genau die Funktion im Integral ist. Integrieren ist also Ableiten rückwärts." },
+        { "label": "Das kennst du", "tex": "(\\sin u)' = \\cos u", "why": "Die Ableitung von Sinus ist Kosinus (Formelsammlung).", "say": "Ein Beispiel, das du kennst: Die Ableitung von Sinus ist Kosinus." },
+        { "label": "Rückwärts gelesen", "tex": "\\int \\cos u\\,du = \\sin u + C", "why": "Welche Funktion hat die Ableitung cos? → sin!", "say": "Jetzt lesen wir das rückwärts: Welche Funktion hat die Ableitung Kosinus? Richtig, Sinus! Also ist das Integral von Kosinus gleich Sinus.", "note": { "label": "Grundintegral", "tex": "\\int\\cos u\\,du=\\sin u+C" } },
+        { "label": "Warum + C?", "tex": "(\\sin u + 5)' = \\cos u", "why": "Zahlen fallen beim Ableiten weg → deshalb immer + C.", "say": "Und warum plus C? Weil auch Sinus plus fünf die Ableitung Kosinus hat. Eine Zahl fällt beim Ableiten einfach weg. Darum schreiben wir immer plus C, für eine beliebige Zahl." }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "basics",
+      "heading": "📚 Grundlage 2: Die Kettenregel",
+      "parts": [
+        { "label": "Funktion in Funktion", "tex": "\\sin(\\textcolor{#dc2626}{x^2})", "why": "Außen: sin  ·  Innen (rot): x²", "say": "Grundlage zwei: die Kettenregel. Die brauchst du, wenn eine Funktion in einer anderen steckt. Zum Beispiel Sinus von x Quadrat. Außen steht der Sinus, innen steht x Quadrat." },
+        { "label": "Die Regel", "text": "Ableitung = äußere Ableitung · innere Ableitung", "say": "Die Regel lautet: äußere Ableitung mal innere Ableitung." },
+        { "label": "Anwenden", "tex": "\\big(\\sin(\\textcolor{#dc2626}{x^2})\\big)' = \\cos(\\textcolor{#dc2626}{x^2})\\cdot \\textcolor{#2563eb}{2x}", "why": "Außen: sin → cos (innen bleibt stehen). Dann mal innen abgeleitet: x² → 2x.", "say": "Außen: Sinus abgeleitet wird Kosinus. Das Innere bleibt dabei stehen. Dann mal die innere Ableitung: x Quadrat abgeleitet ist zwei x." },
+        { "label": "Fällt dir was auf?", "text": "cos(x²) · 2x – das sieht fast aus wie unsere Aufgabe! 😮", "say": "Fällt dir was auf? Kosinus von x Quadrat mal zwei x. Das sieht fast genauso aus wie unsere Aufgabe! Das ist kein Zufall." }
+      ]
+    },
+    {
+      "type": "formula",
+      "heading": "💡 Die Idee",
+      "tex": "\\int \\textcolor{#2563eb}{2x}\\cdot\\cos(\\textcolor{#dc2626}{x^2})\\,dx",
+      "parts": [
+        { "tex": "\\textcolor{#dc2626}{x^2}\\;=\\;\\text{die innere Funktion}", "say": "Schauen wir uns die Aufgabe nochmal an. Im Kosinus steht die innere Funktion x Quadrat, in Rot." },
+        { "tex": "\\textcolor{#2563eb}{2x}\\;=\\;\\text{die Ableitung von }\\textcolor{#dc2626}{x^2}", "say": "Und vorne steht zwei x, in Blau. Das ist genau die Ableitung von x Quadrat." },
+        { "text": "Idee: x² durch einen Buchstaben u ersetzen. Am Ende bleibt nur ∫ cos u du übrig.", "say": "Die Idee: Wir ersetzen x Quadrat durch einen einfachen Buchstaben, nämlich u. Wenn wir alles richtig machen, bleibt am Ende nur das Grundintegral von Kosinus übrig. Ersetzen heißt auf Latein Substitution. Daher der Name." }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "steps",
+      "heading": "Schritt 1 + 2: u und dx",
+      "parts": [
+        { "label": "① u festlegen", "tex": "u = x^2", "why": "Wir geben der inneren Funktion einen neuen Namen.", "say": "Schritt eins: Wir geben der inneren Funktion einen neuen Namen. u gleich x Quadrat.", "note": { "label": "①", "tex": "u = x^2" } },
+        { "label": "② u ableiten", "tex": "\\frac{du}{dx} = 2x", "why": "x² abgeleitet ist 2x.  du/dx heißt: „u abgeleitet nach x“.", "say": "Schritt zwei: Im Integral steht aber auch noch d x. Das müssen wir auch ersetzen. Dafür leiten wir u ab. x Quadrat abgeleitet ist zwei x. Man schreibt das so: d u nach d x gleich zwei x." },
+        { "label": "mal dx", "tex": "du = 2x\\cdot dx", "why": "Beide Seiten mal dx – wie bei einem Bruch.", "say": "Jetzt wollen wir d x alleine haben. Wir rechnen beide Seiten mal d x, wie bei einem normalen Bruch. Dann steht da: d u gleich zwei x mal d x." },
+        { "label": "durch 2x", "tex": "dx = \\frac{du}{2x}", "why": "Beide Seiten durch 2x. Jetzt wissen wir, was wir für dx einsetzen.", "say": "Und jetzt teilen wir beide Seiten durch zwei x. Ergebnis: d x gleich d u durch zwei x. Das merken wir uns.", "note": { "label": "②", "tex": "dx = \\frac{du}{2x}" } }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "steps",
+      "heading": "Schritt 3: Einsetzen",
+      "parts": [
+        { "label": "Start", "tex": "\\int 2x\\cdot\\cos(\\textcolor{#dc2626}{x^2})\\cdot \\textcolor{#2563eb}{dx}", "why": "Rot und blau ersetzen wir jetzt – eins nach dem anderen.", "say": "Schritt drei: Einsetzen. Wir starten mit der Aufgabe. Rot ist x Quadrat, blau ist d x. Diese beiden Teile ersetzen wir jetzt, eins nach dem anderen." },
+        { "label": "x² → u", "tex": "\\int 2x\\cdot\\cos(\\textcolor{#dc2626}{u})\\cdot \\textcolor{#2563eb}{dx}", "why": "aus ①:  u = x²", "say": "Zuerst ersetzen wir x Quadrat durch u. Aus Kosinus von x Quadrat wird Kosinus von u." },
+        { "label": "dx → du/2x", "tex": "\\int 2x\\cdot\\cos(u)\\cdot \\textcolor{#2563eb}{\\frac{du}{2x}}", "why": "aus ②:  dx = du / 2x", "say": "Dann ersetzen wir d x durch d u durch zwei x. Das haben wir eben ausgerechnet." },
+        { "label": "2x kürzen", "tex": "\\int \\cancel{2x}\\cdot\\cos(u)\\cdot \\frac{du}{\\cancel{2x}} = \\int \\cos(u)\\,du", "why": "2x steht oben und unten:  2x ÷ 2x = 1. Kein x mehr übrig!", "say": "Jetzt schau genau hin: Zwei x steht einmal oben und einmal unten im Bruch. Zwei x geteilt durch zwei x ist eins. Also kürzen sie sich weg! Übrig bleibt nur das Integral von Kosinus u, d u. Es kommt kein x mehr vor.", "note": { "label": "③", "tex": "\\int\\cos u\\,du" } }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "steps",
+      "heading": "Schritt 4 + 5: Integrieren und zurück zu x",
+      "parts": [
+        { "label": "④ Integrieren", "tex": "\\int \\cos(u)\\,du = \\sin(u) + C", "why": "Grundlage 1:  (sin u)' = cos u  →  ∫ cos u du = sin u + C", "say": "Schritt vier: Das ist genau das Grundintegral von vorhin. Welche Funktion hat die Ableitung Kosinus? Sinus. Also: Sinus von u plus C." },
+        { "label": "⑤ Zurück zu x", "tex": "\\sin(\\textcolor{#dc2626}{u}) + C = \\sin(\\textcolor{#dc2626}{x^2}) + C", "why": "Die Aufgabe war mit x – also u wieder durch x² ersetzen.", "say": "Schritt fünf: Unsere Aufgabe war aber mit x, nicht mit u. Also setzen wir für u wieder x Quadrat ein. Das nennt man Rücksubstitution." },
+        { "label": "Ergebnis", "tex": "\\boxed{\\int 2x\\cos(x^2)\\,dx = \\sin(x^2) + C}", "say": "Und das ist unser Ergebnis: Sinus von x Quadrat plus C.", "note": { "label": "Ergebnis", "tex": "\\sin(x^2)+C" } },
+        { "label": "Probe", "tex": "\\big(\\sin(x^2)\\big)' = \\cos(x^2)\\cdot 2x \\;\\checkmark", "why": "Kettenregel (Grundlage 2) – wir landen genau bei der Aufgabe.", "say": "Zum Schluss die Probe: Wir leiten das Ergebnis mit der Kettenregel ab. Kosinus von x Quadrat mal zwei x. Das ist genau die Funktion aus der Aufgabe. Also stimmt unser Ergebnis!" }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "tricks",
+      "heading": "💡 Trick: Wenn eine Zahl fehlt",
+      "parts": [
+        { "label": "Neue Aufgabe", "tex": "\\int x\\cdot\\cos(x^2)\\,dx", "why": "Vorne steht nur x – nicht 2x.", "say": "Jetzt ein Trick für die Klausur. Was ist, wenn vorne nur x steht, und nicht zwei x?" },
+        { "label": "Gleich einsetzen", "tex": "\\int x\\cdot\\cos(u)\\cdot\\frac{du}{2x}", "why": "Genau die gleichen Schritte:  u = x²,  dx = du / 2x", "say": "Kein Problem! Wir machen genau die gleichen Schritte. u gleich x Quadrat, und d x gleich d u durch zwei x." },
+        { "label": "Kürzen", "tex": "\\frac{x}{2x} = \\frac{1}{2} \\;\\Rightarrow\\; \\frac12\\int\\cos(u)\\,du", "why": "Das x kürzt sich trotzdem weg – nur die Zahl ½ bleibt.", "say": "Jetzt kürzen wir: x durch zwei x ist ein halb. Das x verschwindet trotzdem, nur eine Zahl bleibt übrig. Und Zahlen dürfen wir einfach vor das Integral schreiben." },
+        { "label": "Ergebnis", "tex": "= \\tfrac{1}{2}\\sin(x^2) + C", "why": "Merke: Fehlt nur eine Zahl, ist das kein Problem.", "say": "Ergebnis: ein halb mal Sinus von x Quadrat plus C. Merke: Fehlt nur eine Zahl, ist das kein Problem." }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "tricks",
+      "heading": "⚠️ Typische Klausurfehler",
+      "parts": [
+        { "label": "u vergessen", "text": "Am Ende muss wieder x im Ergebnis stehen – kein u!", "say": "Fehler Nummer eins: die Rücksubstitution vergessen. Am Ende muss im Ergebnis wieder x stehen, kein u." },
+        { "label": "+ C vergessen", "text": "Integral ohne Grenzen → immer + C", "say": "Fehler Nummer zwei: das plus C vergessen. Bei einem Integral ohne Grenzen gehört es immer dazu." },
+        { "label": "x bleibt übrig?", "text": "Kürzt sich x nicht weg, war u falsch gewählt → anderes u probieren.", "say": "Und ein Tipp: Wenn nach dem Einsetzen noch ein x übrig bleibt, das sich nicht wegkürzt, dann war u falsch gewählt. Probier dann ein anderes u." }
+      ]
+    },
+    {
+      "type": "list",
+      "variant": "summary",
+      "heading": "Zusammenfassung: Das Rezept",
+      "parts": [
+        { "text": "① Innere Funktion = u", "say": "Hier ist das Rezept zum Merken. Erstens: Die innere Funktion wird u." },
+        { "text": "② u ableiten → nach dx umstellen", "say": "Zweitens: u ableiten und nach d x umstellen." },
+        { "text": "③ Einsetzen und kürzen, bis nur noch u dasteht", "say": "Drittens: einsetzen und kürzen, bis nur noch u dasteht." },
+        { "text": "④ Integrieren  ⑤ u zurück ersetzen  + Probe", "say": "Viertens integrieren. Fünftens u wieder zurück ersetzen, und die Probe machen. Viel Erfolg!" }
+      ]
+    }
+  ]
+}

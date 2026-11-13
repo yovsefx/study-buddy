@@ -1,0 +1,41 @@
+{
+  "name": "study-buddy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/index.ts",
+    "build": "vite build web --outDir ../dist --emptyOutDir",
+    "dev:web": "vite web",
+    "typecheck": "tsc -p web"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.3.318",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.3.0",
+    "multer": "^2.5.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/caveat": "^5.3.0",
+    "@fontsource/instrument-sans": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@fontsource/nunito": "^5.3.0",
+    "@types/markdown-it": "^14.2.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "dompurify": "^3.4.17",
+    "function-plot": "^1.26.0",
+    "katex": "^0.19.1",
+    "lucide-react": "^1.69.0",
+    "markdown-it": "^15.0.3",
+    "markdown-it-container": "^4.0.0",
+    "markdown-it-texmath": "^1.0.0",
+    "mermaid": "^12.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}

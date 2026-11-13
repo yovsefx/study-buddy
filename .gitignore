@@ -1,0 +1,30 @@
+# Dependencies and builds
+node_modules/
+.venv/
+app/dist/
+__pycache__/
+
+# Secrets and local configuration (copy the *.example files)
+.env
+app/.env
+app/config/modules.json
+app/config/student.md
+
+# Runtime data: database, uploads, library copies, rendered videos
+app/data/
+
+# Your own PDFs: drop them into library/<module-id>/ (only the README is tracked)
+library/*
+!library/README.md
+
+# Generated video files
+video/out/
+video/public/audio/
+video/src/data/
+video/lessons/generated/
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+*.log
